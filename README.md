@@ -2,7 +2,7 @@
 
 A break-beam IR sensor pair + Arduino Uno system that counts people entering/exiting a room in real time, displays live IN/OUT/Current counts on a 16×2 I²C LCD, and triggers a buzzer alarm when occupancy hits a configurable limit. Built and tested to zero counting errors across 50 controlled crossings.
 
-Published in **IJARCCE, Vol. 15, Issue 4, April 2026** — [DOI: 10.17148/IJARCCE.2026.154157](https://doi.org/10.17148/IJARCCE.2026.154157)
+Published in **IJARCCE, Vol. 15, Issue 4, April 2026** — [10.17148/IJARCCE.2026.154156](https://doi.org/10.17148/IJARCCE.2026.154157)
 
 ---
 
@@ -96,7 +96,7 @@ Under the guidance of Ms. Charulatha R T, Assistant Professor, Dept. of CSE
 Department of Computer Science and Engineering, SRM Institute of Science and Technology, Vadapalani, Chennai
 
 Published in *International Journal of Advanced Research in Computer and Communication Engineering (IJARCCE)*, ISSN (Online) 2278-1021, ISSN (Print) 2319-5940 — Vol. 15, Issue 4, April 2026.
-DOI: [10.17148/IJARCCE.2026.154157](https://doi.org/10.17148/IJARCCE.2026.154157)
+DOI: [10.17148/IJARCCE.2026.154156](https://doi.org/10.17148/IJARCCE.2026.154157)
 
 ## Team
 
