@@ -96,7 +96,7 @@ Under the guidance of Ms. Charulatha R T, Assistant Professor, Dept. of CSE
 Department of Computer Science and Engineering, SRM Institute of Science and Technology, Vadapalani, Chennai
 
 Published in *International Journal of Advanced Research in Computer and Communication Engineering (IJARCCE)*, ISSN (Online) 2278-1021, ISSN (Print) 2319-5940 — Vol. 15, Issue 4, April 2026.
-DOI: [10.17148/IJARCCE.2026.154156](https://doi.org/10.17148/IJARCCE.2026.154156)
+DOI: [10.17148/IJARCCE.2026.154156](https://ijarcce.com/wp-content/uploads/2026/04/IJARCCE.2026.154156-iot.pdf)
 
 ## Team
 
