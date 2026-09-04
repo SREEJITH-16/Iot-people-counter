@@ -106,6 +106,3 @@ Built by **Team Nova**: Sreejith S · Durai Raj R · Manish Kumar Mandal · Arav
 
 Thanks to the CSE lab staff for the corridor access, and to our project guide, whose comment that "your debounce won't survive a slow walker" turned out to be exactly right.
 
-## License
-
-*Add a license (e.g. MIT) if you intend this to be reused or built upon.*
