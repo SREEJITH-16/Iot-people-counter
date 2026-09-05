@@ -1,16 +1,34 @@
-# IoT People Counter using IR Sensors
+<div align="center">
 
-A break-beam IR sensor pair + Arduino Uno system that counts people entering/exiting a room in real time, displays live IN/OUT/Current counts on a 16×2 I²C LCD, and triggers a buzzer alarm when occupancy hits a configurable limit. Built and tested to zero counting errors across 50 controlled crossings.
+<img src="https://capsule-render.vercel.app/api?type=soft&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=IoT%20People%20Counter&fontSize=54&fontColor=00ffb3&animation=fadeIn&fontAlignY=32&desc=Break-Beam%20IR%20Sensing%20%2B%20Arduino%20Uno&descAlignY=52&descSize=16&descColor=8be9c1" width="100%"/>
 
-Published in **IJARCCE, Vol. 15, Issue 4, April 2026** — [10.17148/IJARCCE.2026.154156](https://ijarcce.com/wp-content/uploads/2026/04/IJARCCE.2026.154156-iot.pdf)
+<img src="https://readme-typing-svg.demolab.com/?font=JetBrains+Mono&size=18&duration=2200&pause=900&color=00FFB3&center=true&vCenter=true&multiline=true&width=700&height=100&lines=%3E+Initializing+entry%2Fexit+IR+sensors...;%3E+Calibrating+break-beam+threshold...;%3E+Debounce+latch+armed+%E2%80%94+500ms+hold;%3E+System+online.+0+errors+%2F+50+crossings." alt="Boot Sequence" />
 
----
+<br/><br/>
+
+![Arduino](https://img.shields.io/badge/Arduino%20Uno-00979D?style=for-the-badge&logo=arduino&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![IJARCCE](https://img.shields.io/badge/Published-IJARCCE%20Vol.15-6a11cb?style=for-the-badge)
+![Accuracy](https://img.shields.io/badge/Accuracy-50%2F50-00b894?style=for-the-badge)
+
+<br/>
+
+**Published in IJARCCE, Vol. 15, Issue 4, April 2026**
+DOI: [10.17148/IJARCCE.2026.154156](https://ijarcce.com/wp-content/uploads/2026/04/IJARCCE.2026.154156-iot.pdf)
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2c5364,100:0f2027&height=4&section=header" width="100%"/>
+
+<br/>
 
 ## Why
 
-A shared lab was rated for 20 people but regularly hit 25+ on busy afternoons, with no automated way to track it. This project explores whether a cheap, reliable people counter could be built for under $15 — and documents what *didn't* work along the way, because the debounce logic took three attempts to get right.
+A shared lab was rated for 20 people but regularly hit 25+ on busy afternoons, with no automated way to track it. This project explores whether a cheap, reliable people counter could be built for **under $15** — and documents what *didn't* work along the way, because the debounce logic took three attempts to get right.
 
-## How it works
+<br/>
+
+## How It Works
 
 Two HW-201 break-beam IR modules sit on either side of a doorframe (entry + exit). When a person interrupts the beam, the Arduino reads the transition and updates a running count — incrementing on entry, decrementing on exit — shown live on an LCD, with a buzzer that fires once per normal crossing and three times if the room is full.
 
@@ -23,7 +41,11 @@ Arduino Uno
 └── A5  → LCD SCL (I²C)
 ```
 
-## The core problem: debouncing a break-beam sensor
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2c5364,100:0f2027&height=4&section=header" width="100%"/>
+
+<br/>
+
+## The Core Problem: Debouncing a Break-Beam Sensor
 
 A naive "read pin, increment if LOW" loop overcounts massively — a 16 MHz Uno polls fast enough that a single 400 ms beam-break registers as hundreds of thousands of increments. Three approaches were tried before landing on one that held up:
 
@@ -38,6 +60,10 @@ The 500 ms hold value was found empirically — 200 ms let a mid-crossing hesita
 
 Full reasoning for each failed attempt (including why camera-based and ultrasonic counting were ruled out first) is in the [published paper](#publication).
 
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2c5364,100:0f2027&height=4&section=header" width="100%"/>
+
+<br/>
+
 ## Hardware
 
 | Part | Spec | Qty |
@@ -49,9 +75,15 @@ Full reasoning for each failed attempt (including why camera-based and ultrasoni
 | Breadboard | 830 tie-point | 1 |
 | Jumper wires | M-M / M-F, assorted | ~20 |
 
-**Total cost: under $15.**
+<div align="center">
 
-## Getting started
+**Total cost: under $15**
+
+</div>
+
+<br/>
+
+## Getting Started
 
 ### Wiring
 Connect sensors and peripherals per the pin table above. D2/D3 are used deliberately — they expose the Uno's hardware interrupt lines (INT0/INT1) for a future upgrade, even though the current firmware uses a polled loop.
@@ -62,10 +94,14 @@ Connect sensors and peripherals per the pin table above. D2/D3 are used delibera
 3. Select **Arduino Uno** as the board, select the correct port, and upload.
 4. Power on — the LCD shows a 4-second splash sequence (sensor settling time) before the counter goes live.
 
-### Adjust sensitivity
+### Adjust Sensitivity
 Trim the HW-201 potentiometers until the onboard LED responds cleanly to a hand passing through the beam at mounting height. Recalibrate if ambient lighting changes significantly.
 
-## Testing summary
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2c5364,100:0f2027&height=4&section=header" width="100%"/>
+
+<br/>
+
+## Testing Summary
 
 Tested in a second-floor corridor under fluorescent lighting (290–350 lux):
 
@@ -82,27 +118,52 @@ Tested in a second-floor corridor under fluorescent lighting (290–350 lux):
 
 > **Note on the 100% figure:** this covers one person at a time, in controlled, sequential crossings. Two people passing simultaneously in opposite directions is untested and, logically, undefined for a two-sensor sequential scheme — not a realistic case for the target use (labs, server rooms, small classrooms), but worth stating plainly.
 
-## Limitations & future work
+<br/>
+
+## Limitations & Future Work
 
 - **500 ms blocking hold**: the main loop doesn't read sensors during the hold, so traffic above ~2 crossings/second will start missing events. The fix is moving detection onto hardware interrupts (D2/D3 already expose INT0/INT1 for this) with a non-blocking timer instead of `delay()` — not yet implemented.
 - **No persistence across power loss**: counts reset to zero on reboot. The ATmega328P's onboard 1KB EEPROM is unused; writing counters there after each update (~3 ms/write) would fix this for unreliable power environments.
 - **Simultaneous opposite-direction crossings** are untested and undefined for this sensor arrangement.
 
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2c5364,100:0f2027&height=4&section=header" width="100%"/>
+
+<br/>
+
 ## Publication
 
+<div align="center">
+
 **IOT PROJECT: PEOPLE COUNTER USING IR SENSORS**
+
 *Sreejith S, Durai Raj R, Manish Kumar Mandal, Aravind Sriram, Deepak G*
 Under the guidance of Ms. Charulatha R T, Assistant Professor, Dept. of CSE
 Department of Computer Science and Engineering, SRM Institute of Science and Technology, Vadapalani, Chennai
 
-Published in *International Journal of Advanced Research in Computer and Communication Engineering (IJARCCE)*, ISSN (Online) 2278-1021, ISSN (Print) 2319-5940 — Vol. 15, Issue 4, April 2026.
-DOI: [10.17148/IJARCCE.2026.154156](https://ijarcce.com/wp-content/uploads/2026/04/IJARCCE.2026.154156-iot.pdf)
+Published in *International Journal of Advanced Research in Computer and Communication Engineering (IJARCCE)*
+ISSN (Online) 2278-1021 · ISSN (Print) 2319-5940 · Vol. 15, Issue 4, April 2026
+
+**DOI:** [10.17148/IJARCCE.2026.154156](https://ijarcce.com/wp-content/uploads/2026/04/IJARCCE.2026.154156-iot.pdf)
+
+</div>
+
+<br/>
 
 ## Team
 
-Built by **Team Nova**: Sreejith S · Durai Raj R · Manish Kumar Mandal · Aravind Sriram · Deepak G
+<div align="center">
+
+**Team Nova**
+Sreejith S · Durai Raj R · Manish Kumar Mandal · Aravind Sriram · Deepak G
+
+</div>
+
+<br/>
 
 ## Acknowledgements
 
 Thanks to the CSE lab staff for the corridor access, and to our project guide, whose comment that "your debounce won't survive a slow walker" turned out to be exactly right.
 
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=soft&color=0:2c5364,50:203a43,100:0f2027&height=120&section=footer" width="100%"/>
