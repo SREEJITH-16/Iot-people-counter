@@ -126,7 +126,7 @@ void updateLCD()
 }
 
 
-/* BEEP */
+/* BEEP blink*/
 
 void beep()
 {
